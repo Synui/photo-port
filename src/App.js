@@ -1,17 +1,31 @@
 // center of the application
 // the root component, or the wrapper component that houses all of the other components
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Nav from './components/Nav';
 import About from './components/About';
+import Gallery from './components/Gallery'
 
 function App() {
+  const [categories] = useState([
+    { name: 'commercial', description: 'Photos of grocery stores, food trucks, and other commercial projects' },
+    { name: 'portraits', description: 'Portraits of people in my life' },
+    { name: 'food', description: 'Delicious delicacies' },
+    { name: 'landscape', description: 'Fields, farmhouses, waterfalls, and the beauty of nature' },
+  ]);
+  const [currentCategory, setCurrentCategory] = useState(categories[0]);
   return (
-    // React.createElement("div", {}, [])
     <div>
-      <Nav></Nav>
+      <Nav
+        categories={categories}
+        setCurrentCategory={setCurrentCategory}
+        currentCategory={currentCategory}
+      ></Nav>
       <main>
-        <About></About>
+        <div>
+          <Gallery></Gallery>
+          <About></About>
+        </div>
       </main>
     </div>
   );

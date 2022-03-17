@@ -9,10 +9,10 @@ function Nav(props) {
         setCurrentCategory,
         currentCategory
     } = props;
-    
+
     useEffect(() => {
         document.title = capitalizeFirstLetter(currentCategory.name);
-      }, [currentCategory]);
+    }, [currentCategory]);
 
     return (
         <header className="flex-row px-1">
@@ -26,7 +26,7 @@ function Nav(props) {
             <nav>
                 <ul className="flex-row">
                     <li className="mx-2">
-                        <a href="#about">
+                        <a data-testid="about" href="#about">
                             About me
                         </a>
                     </li>

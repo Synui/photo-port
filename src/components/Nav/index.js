@@ -1,19 +1,21 @@
 import React from 'react';
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Nav() {
     const categories = [
         {
-            name: "Commercial",
+            name: "commercial",
             description:
                 "Photos of grocery stores, food trucks, and other commercial projects",
         },
-        { name: "Portraits", description: "Portraits of people in my life" },
-        { name: "Food", description: "Delicious delicacies" },
+        { name: "portraits", description: "Portraits of people in my life" },
+        { name: "food", description: "Delicious delicacies" },
         {
-            name: "Landscape",
+            name: "landscape",
             description: "Fields, farmhouses, waterfalls, and the beauty of nature",
         },
     ];
+
     /* console log the clicked names in nav bar */
     function categorySelected(name) {
         console.log(`${name} clicked`)
@@ -22,19 +24,21 @@ function Nav() {
     return (
         <header>
             <h2>
-                <a href="/">
+                <a data-testid="link" href="/">
                     <span role="img" aria-label="camera"> 📸</span> Oh Snap!
                 </a>
             </h2>
             <nav>
                 <ul className="flex-row">
                     <li className="mx-2">
-                        <a href="#about">
+                        <a data-testid="about" href="#about" onClick={() => categorySelected("About")}>
                             About me
                         </a>
                     </li>
                     <li>
-                        <span>Contact</span>
+                        <span onClick={() => categorySelected('Contact')}>
+                            Contact
+                        </span>
                     </li>
                     {/* Whenever we map over anything in JSX, the outermost element must have a key attribute that's set to be something unique */}
                     {categories.map((category) => (
@@ -44,7 +48,7 @@ function Nav() {
                         >
                             {/* on click utilize categorySelected function */}
                             <span onClick={() => categorySelected(category.name)} >
-                                {category.name}
+                                {capitalizeFirstLetter(category.name)}
                             </span>
                         </li>
                     ))}
